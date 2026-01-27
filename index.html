@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goju Ryu Meibukan Karate-Do | Есик</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #FFD700; 
+            --secondary-color: #d40000; 
+            --dark-bg: #121212;
+            --light-bg: #ffffff;
+            --text-color: #333;
+            --transition: all 0.4s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: #f8f8f8;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+        }
+
+        /* --- ШАПКА --- */
+        .header {
+            background: rgba(18, 18, 18, 0.95);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-section img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            background: white; 
+            border-radius: 50%;
+            padding: 2px;
+            border: 2px solid var(--primary-color);
+        }
+
+        .header-text h1 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            letter-spacing: 2px;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 20px;
+            font-size: 0.9rem;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .whatsapp-btn:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+        }
+
+        /* --- БАННЕР --- */
+        .hero {
+            padding: 60px 20px;
+            background: var(--dark-bg);
+            text-align: center;
+            color: white;
+            border-bottom: 1px solid #333;
+        }
+
+        .hero-content h2 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* --- СЕКЦИИ --- */
+        .section {
+            padding: 80px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            display: inline-block;
+            border-bottom: 4px solid var(--secondary-color);
+            padding-bottom: 10px;
+        }
+
+        /* --- КАРТОЧКИ --- */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        /* --- ТРЕНЕР --- */
+        .trainer-box {
+            display: flex;
+            background: var(--dark-bg);
+            color: white;
+            border-radius: 20px;
+            overflow: hidden;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .trainer-img {
+            flex: 1;
+            min-width: 300px;
+            height: 450px;
+        }
+
+        .trainer-img img {
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .trainer-text {
+            flex: 1;
+            padding: 40px;
+            min-width: 300px;
+        }
+
+        .trainer-text h3 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        /* --- РАСПИСАНИЕ --- */
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .schedule-table th, .schedule-table td {
+            padding: 20px;
+            border: 1px solid #eee;
+            text-align: center;
+        }
+
+        .schedule-table th {
+            background: var(--dark-bg);
+            color: var(--primary-color);
+        }
+
+        /* --- ГАЛЕРЕЯ --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery-item {
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            transition: var(--transition);
+            display: block;
+            background: #f0f0f0;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* --- ФУТЕР --- */
+        .footer {
+            background: #0a0a0a;
+            color: #888;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .social-links {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h2 { font-size: 2.2rem; }
+            .header-text h1 { font-size: 1.4rem; }
+            
+            .contact-info { 
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 10px;
+                font-size: 0.85rem;
+                gap: 5px;
+            }
+            
+            .whatsapp-btn {
+                margin-top: 10px;
+            }
+            
+            .gallery-item { height: 250px; }
+            
+            .card-img { 
+                height: 220px;
+                object-fit: cover;
+            }
+            
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <div class="header-content">
+            <div class="logo-section">
+                <img src="img/image.png" alt="Logo">
+                <div class="header-text">
+                    <h1>MEIBUKAN KARATE</h1>
+                </div>
+            </div>
+            <div class="contact-info">
+                <span><i class="fas fa-map-marker-alt"></i> Адрес г. Есик ул Валиханова 16/г</span>
+                <span><i class="fas fa-phone"></i> +7 747 671 5502</span>
+            </div>
+            <a href="https://wa.me/77476715502" class="whatsapp-btn">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+        </div>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h2>GOJU RYU MEIBUKAN</h2>
+        <p>Традиционное окинавское каратэ в городе Есик. Путь к силе, дисциплине и внутренней гармонии.</p>
+    </div>
+</section>
+
+<div class="container">
+
+    <section class="section" id="about">
+        <div class="section-title">
+            <h2>Философия школы</h2>
+        </div>
+        <div class="grid-3">
+            <div class="card">
+                <img src="img/image copy 5.png" class="card-img" alt="Goju Ryu Style">
+                <div class="card-content">
+                    <h3>Стиль Годзю-Рю</h3>
+                    <p>Сочетание жесткости (Го) и мягкости (Дзю). Мы учим использовать силу противника против него самого.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://kontakt-karate.ru/wp-content/uploads/2011/07/chōjun-miyagi.jpg" class="card-img" alt="Meibukan Tradition">
+                <div class="card-content">
+                    <h3>Традиция Мейбукан</h3>
+                    <p>Основатель Meibukan, хранитель традиций Goju Ryu и окинавского каратэ.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://thumbs.dreamstime.com/b/discipline-kneeling-people-martial-arts-studio-practice-training-self-defense-class-culture-karate-discipline-347279343.jpg" class="card-img" alt="Training">
+                <div class="card-content">
+                    <h3>Дисциплина</h3>
+                    <p>Мы воспитываем уважение, самообладание и железную волю через постоянную практику.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <section class="section">
+        <div class="section-title">
+            <h2>Наш Сенсей</h2>
+        </div>
+        <div class="trainer-box">
+            <div class="trainer-img">
+                <img src="img/master.jpeg" alt="Инструктор">
+            </div>
+            <div class="trainer-text">
+                <h3>Мурсалиев Фархат Тоқтарұлы</h3>
+                <p>Черный пояс 3-дан. Официальный представитель Международной Ассоциации Goju Ryu Meibukan Karate-Do в регионе.</p>
+                <br>
+                <ul style="list-style: none;">
+                    <li><i class="fas fa-check-circle" style="color:var(--primary-color)"></i> Профессиональный подход</li>
+                    <li><i class="fas fa-check-circle" style="color:var(--primary-color)"></i> Аттестации на международные пояса</li>
+                    <li><i class="fas fa-check-circle" style="color:var(--primary-color)"></i> Групповые и индивидуальные занятия</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-title">
+            <h2>Расписание</h2>
+        </div>
+        <div style="overflow-x: auto;">
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th>Группа</th>
+                        <th>Дни занятий</th>
+                        <th>Время</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Молодежная группа</strong></td>
+                        <td>Пн / Ср / Пт</td>
+                        <td>
+                            09:00 - 11:00<br>
+                            15:00 - 17:00<br>
+                            19:00 - 21:00
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="section" id="gallery">
+        <div class="section-title">
+            <h2>Галерея</h2>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="img/image_copy.png" alt="Тренировка 1"></div>
+            <div class="gallery-item"><img src="img/image copy 3.png" alt="Тренировка 2"></div>
+            <div class="gallery-item"><img src="img/image copy 2.png" alt="Тренировка 3"></div>
+            <div class="gallery-item"><img src="img/image copy 4.png" alt="Тренировка 3"></div>
+            <div class="gallery-item"><img src="img/IMG_1973.jpeg" alt="Тренировка 3"></div>
+        </div>
+    </section>
+
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <h2>GOJU RYU MEIBUKAN</h2>
+        
+        <p>Адрес г. Есик ул Валиханова 16/г | +7 747 671 5502</p>
+        <p style="margin-top: 20px; font-size: 0.8rem;">&copy; 2026 Традиционное Окинавское Каратэ-До.</p>
+    </div>
+</footer>
+
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting){
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.section').forEach(section => {
+        observer.observe(section);
+    });
+</script>
+
+</body>
+</html>
