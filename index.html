@@ -178,7 +178,7 @@
             width: 100%;
             height: 250px;
             object-fit: cover;
-            object-position: center top;
+            object-position: center center;
         }
 
         .card-content {
@@ -269,6 +269,63 @@
             transform: scale(1.05);
         }
 
+        /* --- ВИДЕО СЕКЦИЯ --- */
+        .video-section {
+            padding: 80px 0;
+            background: var(--dark-bg);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+
+        .video-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .video-section .section-title h2 {
+            color: white;
+        }
+
+        .video-wrapper {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 0 60px rgba(255, 215, 0, 0.25), 0 20px 60px rgba(0,0,0,0.6);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            background: #000;
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            height: auto;
+            display: block;
+            /* Высокое качество рендеринга */
+            image-rendering: high-quality;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+            /* Аппаратное ускорение */
+            will-change: transform;
+        }
+
+        .video-decoration {
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--secondary-color);
+            color: white;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            padding: 4px 20px;
+            border-radius: 0 0 8px 8px;
+            text-transform: uppercase;
+            pointer-events: none;
+        }
+
         /* --- ФУТЕР --- */
         .footer {
             background: #0a0a0a;
@@ -334,8 +391,9 @@
             }
             
             .card-img { 
-                height: 220px;
+                height: 160px;
                 object-fit: cover;
+                object-position: center center;
             }
             
             .grid-3 {
@@ -348,6 +406,15 @@
             
             .section-title h2 {
                 font-size: 2rem;
+            }
+
+            .video-section {
+                padding: 50px 0;
+            }
+
+            .video-wrapper {
+                border-radius: 10px;
+                margin: 0 10px;
             }
         }
     </style>
@@ -389,7 +456,7 @@
         </div>
         <div class="grid-3">
             <div class="card">
-                <img src="img/image copy 5.png" class="card-img" alt="Goju Ryu Style">
+                <img src="img/image copy 5.png" class="card-img" alt="Goju Ryu Style" style="object-position: center 20%;">
                 <div class="card-content">
                     <h3>Стиль Годзю-Рю</h3>
                     <p>Сочетание жесткости (Го) и мягкости (Дзю). Мы учим использовать силу противника против него самого.</p>
@@ -411,8 +478,6 @@
             </div>
         </div>
     </section>
-
-    
 
     <section class="section">
         <div class="section-title">
@@ -463,6 +528,34 @@
         </div>
     </section>
 
+</div>
+
+<!-- ВИДЕО СЕКЦИЯ — на всю ширину с тёмным фоном -->
+<section class="video-section" id="video">
+    <div class="container">
+        <div class="section-title">
+            <h2>Наши тренировки</h2>
+        </div>
+        <div class="video-wrapper">
+            <div class="video-decoration">Goju Ryu Meibukan</div>
+            <video
+                controls
+                autoplay
+                muted
+                loop
+                preload="auto"
+                playsinline
+                controlsList="nodownload"
+            >
+                <source src="img/karate_video.mp4" type="video/mp4">
+                Ваш браузер не поддерживает видео.
+            </video>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+
     <section class="section" id="gallery">
         <div class="section-title">
             <h2>Галерея</h2>
@@ -473,6 +566,9 @@
             <div class="gallery-item"><img src="img/image copy 2.png" alt="Тренировка 3"></div>
             <div class="gallery-item"><img src="img/image copy 4.png" alt="Тренировка 3"></div>
             <div class="gallery-item"><img src="img/IMG_1973.jpeg" alt="Тренировка 3"></div>
+            <div class="gallery-item"><img src="img/karate.1.jpeg" alt="Тренировка 3"></div>
+            <div class="gallery-item"><img src="img/karate.2.jpeg" alt="Тренировка 3"></div>
+            <div class="gallery-item"><img src="img/karate4.jpeg" alt="Тренировка 3"></div>
         </div>
     </section>
 
@@ -481,7 +577,6 @@
 <footer class="footer">
     <div class="container">
         <h2>GOJU RYU MEIBUKAN</h2>
-        
         <p>Адрес г. Есик ул Валиханова 16/г | +7 747 671 5502</p>
         <p style="margin-top: 20px; font-size: 0.8rem;">&copy; 2026 Традиционное Окинавское Каратэ-До.</p>
     </div>
@@ -496,7 +591,7 @@
         });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.section').forEach(section => {
+    document.querySelectorAll('.section, .video-section').forEach(section => {
         observer.observe(section);
     });
 </script>
